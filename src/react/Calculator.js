@@ -38,32 +38,35 @@ class Calculator extends React.Component {
                 <img id="calculator-front-svg" src={calculatorFront} alt="" />
 
                 <div id="button-container">
-                    <Button id="clear" type="CLEAR" src={clear} />
-                    <Button id="open" type="OPEN" src={open} />
+                    <Button id="clear" type="CLEAR" charSign="C" />
+                    <div></div>
+                    <div></div>
+                    <Button id="equals" type="EQUALS" charSign="=" />
+
+                    {/* <Button id="open" type="OPEN" src={open} />
                     <Button id="close" type="CLOSE" src={close} />
-                    <Button id="sqrt" type="SQRT" src={sqrt} />
+                    <Button id="sqrt" type="SQRT" src={sqrt} /> */}
 
-                    <Button id="seven" type="NUMBER" src={seven} value="7"/>
-                    <Button id="eight" type="NUMBER" src={eight} value="8" />
-                    <Button id="nine" type="NUMBER" src={nine} value="9" />
-                    <Button id="divide" type="DIVIDE" src={divide} />
+                    <Button id="seven" type="NUMBER" charSign="7" value="7"/>
+                    <Button id="eight" type="NUMBER" charSign="8" value="8" />
+                    <Button id="nine" type="NUMBER" charSign="9" value="9" />
+                    <Button id="divide" type="DIVIDE" charSign="/" />
 
-                    <Button id="four" type="NUMBER" src={four} value="4"/>
-                    <Button id="five" type="NUMBER" src={five} value="5" />
-                    <Button id="six" type="NUMBER" src={six} value="6" />
-                    <Button id="multiply" type="MULTIPLY" src={multiply} />
+                    <Button id="four" type="NUMBER" charSign="4" value="4"/>
+                    <Button id="five" type="NUMBER" charSign="5" value="5" />
+                    <Button id="six" type="NUMBER" charSign="6" value="6" />
+                    <Button id="multiply" type="MULTIPLY" charSign="x" />
 
-                    <Button id="one" type="NUMBER" src={one} value="1"/>
-                    <Button id="two" type="NUMBER" src={two} value="2" />
-                    <Button id="three" type="NUMBER" src={three} value="3" />
-                    <Button id="subtract" type="SUBTRACT" src={subtract} />
+                    <Button id="one" type="NUMBER" charSign="1" value="1"/>
+                    <Button id="two" type="NUMBER" charSign="2" value="2" />
+                    <Button id="three" type="NUMBER" charSign="3" value="3" />
+                    <Button id="subtract" type="SUBTRACT" charSign="-" />
 
-                    <Button id="zero" type="NUMBER" src={zero} value="0" />
-                    <Button id="decimal" type="DECIMAL" src={decimal} />
-                    <Button id="equals" type="EQUALS" src={equals} />
-                    <Button id="add" type="ADD" src={add} />
+                    <Button id="zero" type="NUMBER" charSign="0" value="0" />
+                    <Button id="decimal" type="DECIMAL" charSign="." />
+                    <div></div>
+                    <Button id="add" type="ADD" charSign="+" />
                 </div>
-
 
             </div>
 

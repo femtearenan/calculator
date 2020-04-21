@@ -9,9 +9,14 @@ const initialState = {
 function appReducer(state = initialState, action) {
     let item = null;
     let operator = null;
-    const history = state.history;
+    let result = 0;
+    const history = [...state.history];
 
     switch(action.type) {
+        case "CLEAR":
+            return Object.assign({}, state, {
+                ...initialState
+            });
         case "NUMBER":
             let string = "0";
             if (state.inputString === "0") {
@@ -113,7 +118,27 @@ function appReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 history: history,
                 result: calculateResult(history),
-                displayString: state.displayString + item + "/",
+                displayString: state.displayString + item + "*",
+                inputString: "",
+            });
+        case "SQRT":
+            item = parseFloat(state.inputString);
+
+            if (isNaN(item) && history.length > 0) {
+                history.pop();
+            }
+            if (!isNaN(item)){
+                history.push(item);
+            } else {
+                item = "";
+            }
+
+            history.push("√");
+            
+            return Object.assign({}, state, {
+                history: history,
+                result: calculateResult(history),
+                displayString: state.displayString + item + "√",
                 inputString: "",
             });
         case "EQUALS":
@@ -129,12 +154,12 @@ function appReducer(state = initialState, action) {
             }
 
             history.push("=");
-            
+            result = calculateResult(history)
             return Object.assign({}, state, {
-                history: history,
-                result: calculateResult(history),
-                displayString: state.displayString + item,
-                inputString: "",
+                history: [],
+                result: result,
+                displayString: "",
+                inputString: result,
             });
         case "DECIMAL":
             return Object.assign({}, state, {
@@ -165,6 +190,7 @@ function calculateResult(history) {
     let operator = null;
     let maxDecimals = 0;
     let tempDecimals = 0;
+    let decimals = -1;
 
 
     let firstElement = history[0];
@@ -175,6 +201,9 @@ function calculateResult(history) {
         let element = history[i];
         if (isNaN(element) ) {
             operator = element;
+            if (operator === "√") {
+                result = Math.sqrt(result);
+            }
         } else {
             tempDecimals = countDecimals(element);
             if (tempDecimals > maxDecimals) {
@@ -188,6 +217,7 @@ function calculateResult(history) {
                     result -= element;
                     break;
                 case "/":
+                    decimals = 5;
                     result /= element;
                     break;
                 case "*":
@@ -198,7 +228,12 @@ function calculateResult(history) {
         }
         
     }
-    const rounder = getRoundingConst(maxDecimals);
+    let rounder;
+    if (decimals === -1) {
+        rounder = getRoundingConst(maxDecimals);
+    } else {
+        rounder = getRoundingConst(decimals);
+    }
     result = Math.round((result + Number.EPSILON) * rounder) / rounder;
     return result;
 }

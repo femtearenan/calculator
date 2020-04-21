@@ -1,3 +1,9 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 #calcultator {
   position: relative;
 }
@@ -18,7 +24,7 @@
   height: 21rem;
 }
 
-#display {
+#display-container {
   display: flex;
   flex-direction: column;
   z-index: 25;
@@ -34,6 +40,27 @@ textarea {
   border: none;
   resize: none;
   border-radius: 0;
+  white-space: nowrap;
+  direction: ltr;
+  overflow-y: hidden;
+  overflow-x: auto;
+  scrollbar-width: thin; 
+}
+::-webkit-scrollbar {
+  /* width: 2em; */
+  height: 0.3em
+}
+::-webkit-scrollbar-button {
+  background: #ccc
+}
+::-webkit-scrollbar-track-piece {
+  background: #888
+}
+::-webkit-scrollbar-thumb {
+  background: #eee
+}​
+::-webkit-scrollbar:hover {
+  cursor: pointer;
 }
 
 #history-display {
@@ -41,14 +68,24 @@ textarea {
   border-top-right-radius: 3px;
 }
 
-#input-display {
+#display {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  font-size: 2rem;
 }
+
 
 .calculator-button {
   height: 2rem;
+  width: 2rem;
+  /* background-color: #888; */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #686868, #575757);
+  box-shadow:  8px 8px 16px #525252, 
+              -8px -8px 16px #707070;
 }
 
 #button-container {
