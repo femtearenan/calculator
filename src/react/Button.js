@@ -16,8 +16,7 @@ class Button extends React.Component {
 
     render() {
         return (
-            // <img className="calculator-button" id={this.props.id} src={this.props.src} onClick={this.action} value={this.props.value} alt=""/>
-        <div className="calculator-button" id={this.props.id} onClick={this.action} value={this.props.value}>{this.props.charSign}</div>
+            <div className="calculator-button" id={this.props.id} onClick={this.action} value={this.props.value}>{this.props.charSign}</div>
         );
     }
 }

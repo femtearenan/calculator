@@ -1,10 +1,26 @@
+.App {
+  background-image: linear-gradient(to right top, #42d4f8, #4ed1f2, #58ceeb, #61cae5, #68c7df);
+  height: 100vh;
+}
+
+heading {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+  color:hsl(18, 93%, 62%);
+}
+
 section {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
 }
 
-#calcultator {
+#calculator {
+  /* margin: 5rem auto; */
   position: relative;
 }
 
@@ -12,16 +28,16 @@ section {
   z-index: 10;
   position: absolute;
   top: 5.5rem;
-  left: 5.5rem;
+  left: 0.5rem;
   height: 20rem;
 }
 
 #calculator-back-svg {
   z-index: 5;
-  position: absolute;
+  position: relative;
   top: 5rem;
-  left: 5rem;
   height: 21rem;
+
 }
 
 #display-container {
@@ -32,7 +48,13 @@ section {
   height: 4rem;
   position: absolute;
   top: 6.5rem;
-  left: 6.5rem;
+  left: 1.5rem;
+}
+
+#display-container > div{
+  width: 100%;
+  height: 2rem;
+  background-color: white;
 }
 
 textarea {
@@ -64,13 +86,13 @@ textarea {
 }
 
 #history-display {
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  /* border-top-left-radius: 3px;
+  border-top-right-radius: 3px; */
 }
 
 #display {
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  /* border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; */
 }
 
 
@@ -82,17 +104,25 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
+  /* border-radius: 3px;
   background: linear-gradient(145deg, #686868, #575757);
   box-shadow:  8px 8px 16px #525252, 
-              -8px -8px 16px #707070;
+              -8px -8px 16px #707070; */
+  border-radius: 3px;
+  background: linear-gradient(145deg, #404040, #363636);
+  box-shadow:  3px 3px 6px #333333, 
+                -3px -3px 6px #454545;
+}
+
+.calculator-button:hover {
+  cursor: default;
 }
 
 #button-container {
   z-index: 20;
   position: absolute;
   top: 12.2rem;
-  left: 6.5rem;
+  left: 1.5rem;
 
   width: 11.3rem;
   height: 12.5rem;

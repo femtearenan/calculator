@@ -3,7 +3,8 @@ const initialState = {
     history: [],
     result: 0,
     displayString: "",
-    inputString: "0"
+    inputString: "0",
+    ignoreInput: false
 }
 
 function appReducer(state = initialState, action) {
@@ -11,7 +12,7 @@ function appReducer(state = initialState, action) {
     let operator = null;
     let result = 0;
     const history = [...state.history];
-
+    console.log(history);
     switch(action.type) {
         case "CLEAR":
             return Object.assign({}, state, {
@@ -30,10 +31,13 @@ function appReducer(state = initialState, action) {
         case "ADD":
             item = parseFloat(state.inputString);
 
+            // if (isNaN(item) && history.length > 0) {
+            //     if(history[history.length-1] === "-") {
+            //         operator = "-";
+            //     }
+            // }
             if (isNaN(item) && history.length > 0) {
-                if(history[history.length-1] === "-") {
-                    operator = "-";
-                }
+                history.pop();
             }
             if (!isNaN(item)){
                 history.push(item);
@@ -62,6 +66,7 @@ function appReducer(state = initialState, action) {
                     operator = "+";
                 }
             }
+            
             if (!isNaN(item)){
                 history.push(item);
             } else {
@@ -162,8 +167,12 @@ function appReducer(state = initialState, action) {
                 inputString: result,
             });
         case "DECIMAL":
+            let decimal = ".";
+            if (state.inputString.includes(".")){
+                decimal = "";
+            }
             return Object.assign({}, state, {
-                inputString: state.inputString + ".",
+                inputString: state.inputString + decimal,
             });
         default:
             return state;
@@ -208,6 +217,10 @@ function calculateResult(history) {
             tempDecimals = countDecimals(element);
             if (tempDecimals > maxDecimals) {
                 maxDecimals = tempDecimals;
+            }
+            if (i > 1 && isNaN(history[i-2]) && operator === "-") {
+                operator = history[i-2];
+                element = element * (-1);
             }
             switch(operator) {
                 case "+":
